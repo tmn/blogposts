@@ -99,3 +99,5 @@ exports.getBodyParts = function (conf) {
 Now when you start up Robohydra alongside the rest of the system. All request towards `/api/resource/:id` will return local data instead of getting errors because unavailable resources.
 
 By using these methods you can simply create tests clients for your client-server application. Robohydra also lets you return canned responses, static content, reverse proxy requests and a whole lot more. Its web interface allows you to change its behaviour dynamically, and gives you easy access to scenarios and test results.
+
+![Robohydra screen](http://tmn.io/img/robohydra_screen.png)
