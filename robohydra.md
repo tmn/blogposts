@@ -1,4 +1,4 @@
-# Robohydra in your project
+# Robohydra for your project
 Thursday 18 November 2015
 
 Robohydra? Pylons? Zealots?! Everytime I implement Robohydra in one of the teams projects, people tend to ask _"did you just implement StarCraft again?!"_. And I have to admit, I've been using Robohydra **a lot** lately.
@@ -13,7 +13,7 @@ Let's say your team is told to fix and implement some JavaScript features on one
 Or you can use Robohydra! With a simple Robohydra plugin you can bypass the hassle by setting up the system locally, and just clone the JavaScriprt files you need to solve the issue. How? You ask. Let me show you!
 
 
-This is an example on how to only serve the JavaScript file form your local disk. The rest is fetched form the external source:
+This is an example on how to only serve the JavaScript file from your local disk. The rest is fetched form the external source:
 
 ```javascript
 var robohydra = require('robohydra')
@@ -41,7 +41,9 @@ exports.getBodyParts = function (conf) {
 
 ```
 
-Let's say you've already got the system setup locally. But for every style you change, or JavaScript logic you add, you have to rebuild and redeploy the whole package. Let's say it's a Java package deployed on a local tomcat server. Well, you don't want to rebuild and redeploy the package for every change! And you don't want to f**k up the Java code other has written to reflect your needs. Robohydra to the rescue!
+Awesome!
+
+But let's say you've already got the system setup locally. And for every style you change, or JavaScript logic you add, you have to rebuild and redeploy the whole package. Let's say it's a Java package deployed on a local tomcat server. Well, you don't want to rebuild and redeploy the package for every change! And you don't want to f**k up the Java code other has written to reflect your needs. Robohydra to the rescue!
 
 
 
@@ -96,7 +98,7 @@ exports.getBodyParts = function (conf) {
 }
 ```
 
-Now when you start up Robohydra alongside the rest of the system. All request towards `/api/resource/:id` will return local data, instead of returning errors because unavailable resources. And while we're talking about errors. You can of course return intended errors for the sake of tests too!
+Now when you start up Robohydra alongside the rest of the system. All request towards `/api/resource/:id` will return local data, instead of returning errors because of unavailable resources. And while we're talking about errors. You can of course return intended errors for the sake of tests too!
 
 These are my main use cases with Robohydra. By using these methods you can simply create tests clients for your client-server application, return canned responses, static content, reverse proxy requests and a whole lot more. It also comes with a web interface that allow you to change its behaviour dynamically, with easy access to scenarios and test results. Head over to [robohydra.org](http://robohydra.org/) and grab your copy of this awesome tool!
 
