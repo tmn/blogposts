@@ -1,7 +1,7 @@
 # Robohydra in your project
 Onsdag 18. november 2015
 
-Robohydra? Pylons? Zealots?! Everytime I implement [Robohydra](http://robohydra.org/) in one of the teams projects, people tend to ask _"did you just implement StarCraft again?!"_. And I have to admit, I've been using Robohydra **a lot** lately.
+Robohydra? Pylons? Zealots?! Everytime I implement Robohydra in one of the teams projects, people tend to ask _"did you just implement StarCraft again?!"_. And I have to admit, I've been using Robohydra **a lot** lately.
 
 
 ### What is it? What is it good for?
@@ -101,3 +101,5 @@ Now when you start up Robohydra alongside the rest of the system. All request to
 By using these methods you can simply create tests clients for your client-server application. Robohydra also lets you return canned responses, static content, reverse proxy requests and a whole lot more. Its web interface allows you to change its behaviour dynamically, and gives you easy access to scenarios and test results.
 
 ![Robohydra screen](http://tmn.io/img/robohydra_screen.png)
+
+Read more about Robohydra over at [robohydra.org](http://robohydra.org/) and follow the awesome creator, [@estebanm](https://twitter.com/estebanm) amd [@robohydra](https://twitter.com/robohydra), on Twitter.
