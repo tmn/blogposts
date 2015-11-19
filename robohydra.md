@@ -96,10 +96,10 @@ exports.getBodyParts = function (conf) {
 }
 ```
 
-Now when you start up Robohydra alongside the rest of the system. All request towards `/api/resource/:id` will return local data instead of getting errors because unavailable resources.
+Now when you start up Robohydra alongside the rest of the system. All request towards `/api/resource/:id` will return local data, instead of returning errors because unavailable resources. And while we're talking about errors. You can of course return intended errors for the sake of tests too!
 
-By using these methods you can simply create tests clients for your client-server application. Robohydra also lets you return canned responses, static content, reverse proxy requests and a whole lot more. Its web interface allows you to change its behaviour dynamically, and gives you easy access to scenarios and test results.
+These are my main use cases with Robohydra. By using these methods you can simply create tests clients for your client-server application, return canned responses, static content, reverse proxy requests and a whole lot more. It also comes with a web interface that allow you to change its behaviour dynamically, with easy access to scenarios and test results. Head over to [robohydra.org](http://robohydra.org/) and grab your copy of this awesome tool!
 
 ![Robohydra screen](http://tmn.io/img/robohydra_screen.png)
 
-Read more about Robohydra over at [robohydra.org](http://robohydra.org/) and follow the awesome creator, [@estebanm](https://twitter.com/estebanm) amd [@robohydra](https://twitter.com/robohydra), on Twitter.
+Follow the awesome creator, [@estebanm](https://twitter.com/estebanm) amd [@robohydra](https://twitter.com/robohydra), on Twitter.
