@@ -1,5 +1,5 @@
 # Robohydra in your project
-Onsdag 18. november 2015
+Thursday 18 November 2015
 
 Robohydra? Pylons? Zealots?! Everytime I implement Robohydra in one of the teams projects, people tend to ask _"did you just implement StarCraft again?!"_. And I have to admit, I've been using Robohydra **a lot** lately.
 
