@@ -1,28 +1,30 @@
 # Making mobile apps using Fuse
-Sathurday 21 November 2015
+Sunday 22 November 2015
 
 There's a new kid in town! In October 2015 the peoples over at Fuse announced their new UX tool suite for building awesome mobile applications as an open BETA. A tool meant to bring designers and developer closer together.
 
-There are of course other tools out there letting you create and deploy application on multiple platforms. But the new cool thing about Fuse is its ability to push updates of the look and feel to multiple devices in real time while designing and coding. This makes the process from the designers to the implementation by the developers work more seamlessly. No need to re-compile!
+I tried it for the first time back in 2013, and a lot have changed since. With the much improved UX Markup and the integration of JavaScript you can easily get around creating great looking apps in no time. For the more advanced users, Fuse also let you access the native APIs directly using their own language called Uno, a native C# dialect. And if you are familiar with C#, nearly everything you know will apply to Uno code. While playing around with Fuse, I created a simple app displaying the bus departures time in Trondheim, Norway. You can grab the code on [my GitHub page](https://github.com/tmn/FuseBus), and the [project site](https://tmn.github.io/FuseBus).
 
-I tried it for the first time back in 2013, and a lot have been changed since. With the mux improved UX Markup and the integration of JavaScript you can easily get around creating great looking apps in no time. For the more advanced users, Fuse lets you access the native Android and iOS APIs directly using Uno. Unis is a native C# dialect. And if you have been using C# nearly everything you're known to will apply in Uno code. I've also created a simple app for getting departure time for the buses in Trondheim, Norway, in real time. You can see the code on [my GitHub page](https://github.com/tmn/FuseBus).
+There are of course other tools out there letting you create and deploy application on multiple platforms. But the cool thing about Fuse is its ability to push updates of the look and feel to multiple devices in real time. So for every bits of design and logic you change, Fuse will stream the changes to all connected devices while developing. Now the designers can flip pixels while the developer is writing the business logic, and all changes is reflected in real time in the application. No need to re-compile. You **really** have to try it!
 
-![Fuse](https://az664292.vo.msecnd.net/fusetoolscom/v1447844604954/images/fuse_hotspots_tinypng.png)
-Picture by [Fuse](http://fusetools.com/)
+![Fuse](http://tmn.io/img/fusetools.jpg)
 
 ## Native apps
 
-Fuse will for the time being only export to iOS and Android. This may change in the future. Fuse code compiles down to native C++, so the code you write will run natively on each platform.
+Fuse code compiles down to native C++. So the code you write will run natively on each platform. Only Android and iOS is supported for the time being. This may change in the future.
+
 
 ## Trying out Fuse
 
-In order to start explorering Fuse all you need is to download and install the tool itself from [fusetools.com](http://fusetools.com/). Their site is also the best reference for learning Fuse.
+In order to start exploring Fuse all you need is to download and install the tool itself from [fusetools.com](https://fusetools.com/). Their site is also the best reference for learning Fuse.
 
-To get started the Fuse team themselves provides great tutorial videos. They also has a documentation section on their site with enough information to get around. Some bits are less documented, but you'll get an idea of what it can do. Fuse also has a growing community. And the whole team is actively answering questions about the tool itself.
+The Fuse team provides great tutorial videos for you to get started. Some bits are less documented in the documentation, but enough to get around, and you'll get an idea of what it's capable of doing. Fuse also has a growing community, and the whole team is actively answering questions you might have :-)
+
+
 
 ## Creating our first app!
 
-We will start out simple by using only UX Markup. UX Markup is a XML-based format that should be immediately familiar to anyone who has worked with similar formats. The root tag of them all is the `<App>` tag. This one bootstraps the app and takes care of the application lifecycle.
+We will start out simple by using only UX Markup. UX Markup is a XML-based format that should be immediately familiar to anyone who has worked with similar formats. The root tag of your application is the `<App>` tag. This one bootstraps the app and takes care of the application lifecycle.
 
 ```xml
 <App Theme="Basic" Background="#fff">
@@ -30,9 +32,10 @@ We will start out simple by using only UX Markup. UX Markup is a XML-based forma
 </App>
 ```
 
+
 ### Reusable classes
 
-The main .ux file might grow out of scale, and you might want to tighten it up by extracting some of the code to make it reusable. This can be done in many ways. On way is to declare the class inside your main file. Let's say you has some awesome ordering in the file you don't want to mess up:
+The main .ux file might grow out of scale, and you might want to tighten it up by extracting some of the code, and make reusable components. This is achieved by declaring bits of the code as classes. They all can be contained inside the main .ux file like this:
 
 ```xml
 <App>
@@ -48,7 +51,7 @@ The main .ux file might grow out of scale, and you might want to tighten it up b
 </App>
 ```
 
-or you can create a separate file. Like MyAwesomePanel.ux:
+... or you can create a separate file like this:
 
 ```xml
 <Panel ux:Class="MyAwesomePanel">
@@ -59,12 +62,26 @@ or you can create a separate file. Like MyAwesomePanel.ux:
 And use it as the example above. No need for extra include statements.
 
 
+## Themes
+
+Themes in fuse specifies how standard components will look and feel. The default theme is the `Graphic` theme that give the app an identical look and feel on all platforms. Alternatively you can use the `Basic` theme which is inspired by Googles material design. You can also specify `Native` theme if you want the app to have the native look and feel for the targeted platform. Be aware that the Native look and feel isn't supported on desktop. Which means you won't get any styles when previewing on desktop. If you want to use the preview on desktop, but still have the native theming on the devices, you can use the `NativeWithFallback` theme.
+
+Themes are specified in the `<App>` tag:
+
+```xml
+<App Theme="Basic">
+
+</App>
+```
+
+
 
 ## JavaScript
 
-You can of course do a lot with UX Markup only. Animations, triggers, interaction, and much more. But sometimes you need more. You need some kind of business logic. The app needs to do _something_. This is easily solved using JavaScript.
+UX Markup itself can do magic, and other things like animations, triggers, interactions, and much more. But sometimes you need more. You need some kind of business logic. The app needs to do _something_. This is easily done by using JavaScript. The JavaScript itself will run through JavaScriptCore on iOS, and V8 on Android.
 
-js/app.js:
+Here is an example on how you can write JavaScript for your Fuse app:
+
 ```javascript
 function click_handler() {
   debug_log('I just got clicked!');
@@ -75,7 +92,7 @@ module.exports = {
 }
 ```
 
-MainApp.ux:
+And including it inside your .ux file:
 ```xml
 <App>
   <JavaScript File="js/app.js" />
@@ -83,9 +100,9 @@ MainApp.ux:
 </App>
 ```
 
-### Multiple JavaScript modules
+### Multiple JavaScript files/modules
 
-Writing your whole app in one huge JavaScript module might not be the greatest idea. One thing you might wanna do is to split it into different modules, and include them in other JavaScript files:
+One thing you might wanna do is to split the JavaScript into different modules. Because, you simply don't want to write your whole app in one huge JavaScript file! Requiring other modules is easy:
 
 ```xml
 <App>
@@ -107,7 +124,7 @@ js/app.js:
 ```javascript
 var MyComponent = require('MyComponent');
 
-// use awesome MyComponent here...
+//...
 ```
 
 Notice the use of `ux:Global` when including the JavaScript file in the `.ux` file. The file is still included without the `ux:Global` attribute. But to access it from other JavaScript code you need to give it a name.
@@ -115,4 +132,123 @@ Notice the use of `ux:Global` when including the JavaScript file in the `.ux` fi
 
 ## Exposing native APIs with Uno
 
-Uno is a native dialect of #C where you have direct access to Android and iOS APIs.
+Uno is a native dialect of #C where you have direct access to Android and iOS APIs. I'll use the same example as they do in [the documentation](https://www.fusetools.com/learn/uno#creating-new-fusejs-modules).
+
+Let's start out creating a `SystemSound.uno`. This uno class will provide system notification functionality in the JavaScript. To do this we need to import the iOS and Android audio packages:
+
+```csharp
+using Android.android.media;
+using Android.android.app;
+using iOS.AudioToolbox;
+```
+
+
+When creating a native module for JavaScript we have to manually define the members returned when it is used. Else it wont return anything. To do this we adds the members inside the constructor like this:
+
+```csharp
+public SystemSounds()
+{
+  AddMember(new NativeFunction("playNotification",
+      (NativeCallback) PlayNotification));
+}
+```
+
+Now the calling JavaScript will get access to the `playNotification` function.
+
+Next, we need to create the callback function `PlayNotification`. And since the Android and iOS API doesn't work the same way, we can't use the same code for both. It is therefore required to implement the functionality for each platform we want to support:
+
+```csharp
+object PlayNotification(Context c, object[] args)
+{
+  if defined (Android)
+  {
+    var uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+    var ringtone = RingtoneManager.getRingtone(Activity.GetAppActivity(), uri);
+    ringtone.play();
+  }
+  else if defined (iOS)
+  {
+    Functions.AudioServicesPlaySystemSound(1310);
+  }
+
+  return null;
+}
+```
+
+The PlayNotification function takes two arguments (`Context c, object[] args`). The first one is the running JavaScript context, and the second is the arguments that will be passed to the function by the JavaScript. This example doesn't need any of them. And we don't want to get anything in return either, so it will just return `null`.
+
+The whole code would look something like this:
+
+```csharp
+using Uno;
+using Fuse.Scripting;
+using Fuse.Reactive;
+
+using Android.android.media;
+using Android.android.app;
+using iOS.AudioToolbox;
+
+public class SystemSounds : NativeModule
+{
+  public SystemSounds()
+  {
+    AddMember(new NativeFunction("playNotification",
+        (NativeCallback) PlayNotification));
+  }
+
+  object PlayNotification(Context c, object[] args)
+  {
+    if defined(Android)
+    {
+      var uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+      var ringtone = RingtoneManager.getRingtone(Activity.GetAppActivity(), uri);
+      ringtone.play();
+    }
+    else if defined (iOS)
+    {
+      Functions.AudioServicesPlaySystemSound(1310);
+    }
+
+    return null;
+  }
+}
+```
+
+### Let's use our new module!
+
+
+Next up is to use our new module inside our application. This is done by calling it from the `.ux` file:
+
+```xml
+<App>
+  <SystemSounds ux:Global="SystemSounds" />
+  <JavaScript File="js/app.js" />
+
+  <Button Clicked="{playSound}" Text="Play sound!" />
+</App>
+```
+
+Which makes it avaiable as `SystemSound` to the JavaScript:
+
+```javascript
+var SystemSounds = require('SystemSounds');
+
+function playSound() {
+  SystemSound.playNotification();
+}
+
+module.exports = {
+  playSound: playSound
+};
+```
+
+The Fuse team is rapidly implementing these kinds of abstractions inside the Fuse API. But you might come over native features that is not yet implemented. And by having access to the .uno code, you're free to make them yourself.
+
+
+## To sum it up
+
+This was just a short introduction to what Fuse can do, and how you easily could get started on your new app project. It's super easy to set up, and very familiar if you've done some coding before. Especially if you have written code for the web. There are many more important things to learn about Fuse, like animations, interactions, triggers and more. And I couldn't cover it all in this post. However I believe that this quick read will help you get on track and the rest would be piece of cookies!
+
+I've of course experienced some random crashes and bugs in the Fuse process at this early stage. Although this does not affect the application itself, it may be some kind of frustrating while writing it. But I'll say that it's wroth it. I really thinks this is a promising tool with great peoples working on it.
+
+Head over to [fusetools.com](https://fusetools.com/) and check it out yourself. And make sure to check out the [examples](https://www.fusetools.com/examples) too!
